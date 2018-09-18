@@ -20,13 +20,21 @@ public interface Constants {
 	public final static double FIELD_Y_PX = 682;
 	public final static double FIELD_X_IN = 360;
 	public final static double FIELD_Y_IN = 444;
+	
+	// CONVERSIONS
 	public final static double IN_TO_PX = FIELD_X_IN / FIELD_X_PX;
 	public final static double PX_TO_IN = FIELD_X_PX / FIELD_X_IN;
 	
 	// ROBOT DIMENSIONS (INCLUDING BUMPERS)
 	public final static double ROBOT_WIDTH_IN = 0;
 	public final static double ROBOT_LENGTH_IN = 0;
-	public final static double ROBOT_DT_WIDTH = 0; // drivetrain width (length between wheels)
+	public final static double ROBOT_DT_WIDTH = 0; // Drivetrain width (length between wheels)
+	
+	// STARTING POSITIONS
+	
+	// SPEED/ACCELERATION
+	public final static double RAMP_RATE_IN_PER_SECSQ = 0; // 
+	public final static double CRUISE_VELO_IN_PER_SEC = 0;
 	
 	// IMAGES
 	public InputStream mapIs = Main.class.getResourceAsStream("assets/2018Field.png");

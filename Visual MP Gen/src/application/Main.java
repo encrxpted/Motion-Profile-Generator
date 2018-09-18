@@ -42,7 +42,6 @@ public class Main extends Application implements Constants {
 		sp.setAlignment(Pos.TOP_LEFT);
 		sp.setPadding(new Insets(12, 12, 12, 12));
 		
-		// Add the WarGroups and apply events
 		NodeGestures nodeGestures = new NodeGestures(canvas);
 
 		// Instantiates the scene and adds events to allow it to be pannable
