@@ -27,7 +27,8 @@ public class Main extends Application implements Constants {
 	
 	@Override
 	public void start(Stage primaryStage) {
-		canvas.getChildren().add(mapImg);
+		MovableCurves curve = new MovableCurves();
+		canvas.getChildren().addAll(mapImg, curve);
 
 		rightMenu = MenuHelper.addGridPane(); // Adds the menu on the right
 		
