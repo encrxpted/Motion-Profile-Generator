@@ -29,7 +29,13 @@ public class MenuHelper implements Constants {
 
 	private static GridPane gridPane = new GridPane();
 	
-	private static Label currentLbl = new Label("CURRENT PATH");
+	private static Label currentAutoLbl = new Label("CURRENT AUTO");
+	private static Label autoNameLbl = new Label("");
+	// something for starting position
+	
+	private static Label currentPathLbl = new Label("CURRENT PATH");
+	private static Label currentPathNumLbl = new Label("");
+	
 
 	public static GridPane addGridPane() {
 		gridPane.setAlignment(Pos.TOP_LEFT);
@@ -39,16 +45,18 @@ public class MenuHelper implements Constants {
 	    gridPane.setStyle("-fx-background-color: rgba(0, 2, 20, 0.6);");
 	    gridPane.setPadding(new Insets(18, 15, 12, 15));
 		
-
-		gridPane.add(currentLbl, 0, 0);
+	    gridPane.add(currentAutoLbl, 0, 0);
+		gridPane.add(currentPathLbl, 0, 5);
 		
 		return gridPane;
 	}
 
     // Sets fonts, colors, and hover events
 	public static void setStyles() {
-		currentLbl.setTextFill(white);
-		currentLbl.setFont(headerFont);
+		currentPathLbl.setTextFill(white);
+		currentPathLbl.setFont(headerFont);
+		currentAutoLbl.setFont(headerFont);
+		currentAutoLbl.setTextFill(white);
 	}
 
 
