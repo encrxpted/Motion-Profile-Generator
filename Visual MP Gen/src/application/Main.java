@@ -60,7 +60,6 @@ public class Main extends Application implements Constants {
 	public static GridPane getMenu() {
 		return rightMenu;
 	}
-	
 
 	public static void main(String[] args) {
 		launch(args);

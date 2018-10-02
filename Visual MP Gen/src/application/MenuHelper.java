@@ -118,16 +118,27 @@ public class MenuHelper implements Constants {
             Label startPosLbl = new Label("Start Pos: ");
             ObservableList<String> options = 
             	    FXCollections.observableArrayList(
-            	        "Option 1",
-            	        "Option 2",
-            	        "Option 3"
+            	        "Right",
+            	        "Center",
+            	        "Left"
             	    );
             final ComboBox startPosMenu = new ComboBox(options);
-            
-
-            
+            Label submitLbl = new Label("[ SUMBIT ]");
             GridPane gp = new GridPane();
-		}
+            gp.add(nameLbl, 0, 0);
+            gp.add(nameField, 1, 0);
+            gp.add(startPosLbl, 0, 1);
+            gp.add(startPosMenu, 1, 1);
+            gp.add(submitLbl, 0, 2);
+
+            submitLbl.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent event) {
+					
+				}
+            });
+            
+  		}
 	};
 
 	
