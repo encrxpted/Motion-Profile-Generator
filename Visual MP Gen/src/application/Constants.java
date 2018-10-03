@@ -31,6 +31,10 @@ public interface Constants {
 	public final static double ROBOT_DT_WIDTH = 0; // Drivetrain width (length between wheels)
 	
 	// STARTING POSITIONS
+	public final static double START_POS_Y = 0;
+	public final static double LEFT_START_POS_X = 0;
+	public final static double CENTER_START_POS_X = 0;
+	public final static double RIGHT_START_POS_X = 0;
 	
 	// SPEED/ACCELERATION
 	public final static double RAMP_RATE_IN_PER_SECSQ = 0; // 

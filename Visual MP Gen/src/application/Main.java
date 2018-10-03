@@ -5,6 +5,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
+import application.autos.MovableCurves;
 import javafx.application.Application;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;

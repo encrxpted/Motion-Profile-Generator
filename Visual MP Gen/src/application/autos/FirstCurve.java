@@ -1,5 +1,6 @@
-package application;
+package application.autos;
 
+import application.Constants;
 import javafx.beans.property.DoubleProperty;
 import javafx.event.EventHandler;
 import javafx.scene.Cursor;
@@ -17,9 +18,11 @@ import javafx.scene.shape.StrokeType;
  * https://stackoverflow.com/questions/13056795/cubiccurve-javafx?lq=1
  */
 
-public class MovableCurves extends Group {
+public class FirstCurve extends Group implements Constants {
+	String startPos;
 	
-	public MovableCurves() {
+	public FirstCurve(String startPos) {
+		this.startPos = startPos;
 		CubicCurve curve = createStartingCurve();
 
 		Line controlLine1 = new BoundLine(curve.controlX1Property(), curve.controlY1Property(), curve.startXProperty(),

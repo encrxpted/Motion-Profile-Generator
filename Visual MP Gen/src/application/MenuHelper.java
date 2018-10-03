@@ -55,6 +55,8 @@ public class MenuHelper implements Constants {
 		gridPane.setHgap(5);
 	    gridPane.setStyle("-fx-background-color: rgba(0, 2, 20, 0.6);");
 	    gridPane.setPadding(new Insets(18, 15, 12, 15));
+	    
+	    newLbl.addEventFilter(MouseEvent.MOUSE_CLICKED, onNewClicked);
 		
 	    gridPane.add(currentAutoLbl, 0, 0, 2, 1);
 	    
@@ -108,6 +110,7 @@ public class MenuHelper implements Constants {
 	private static EventHandler<MouseEvent> onNewClicked = new EventHandler<MouseEvent>() {
 		@Override
 		public void handle(MouseEvent event) {
+			System.out.println("here");
 			// Makes the window appear
             final Stage stage = new Stage();
             stage.setTitle("New Auto");
@@ -123,18 +126,30 @@ public class MenuHelper implements Constants {
             	        "Left"
             	    );
             final ComboBox startPosMenu = new ComboBox(options);
-            Label submitLbl = new Label("[ SUMBIT ]");
+            Label submitLbl = new Label("[ SUBMIT ]");
             GridPane gp = new GridPane();
             gp.add(nameLbl, 0, 0);
             gp.add(nameField, 1, 0);
             gp.add(startPosLbl, 0, 1);
             gp.add(startPosMenu, 1, 1);
             gp.add(submitLbl, 0, 2);
+            Scene scene = new Scene(gp);
+            
+            gp.setPadding(new Insets(18, 15, 12, 15));
+            gp.setVgap(5);
+            gp.setHgap(5);
+            setHoverEvents(submitLbl);
+            
+            stage.setScene(scene);
+            stage.show();
 
             submitLbl.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 				@Override
 				public void handle(MouseEvent event) {
+					String autoName = nameField.getText();
+					String pos = startPosMenu.getValue().toString();
 					
+					// TODO FINISHME 
 				}
             });
             

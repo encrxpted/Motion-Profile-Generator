@@ -72,58 +72,29 @@ public class SceneGestures {
         @Override
         public void handle(ScrollEvent event) {
 
-            double delta = 1.2;
-            double lastX = event.getX();
-            double lastY = event.getY();
+        	  double delta = 1.2;
 
-            double scale = canvas.getScale(); // currently we only use Y, same value is used for X
-            double oldScale = scale;
+              double scale = canvas.getScale(); // currently we only use Y, same value is used for X
+              double oldScale = scale;
 
-            if (event.getDeltaY() < 0)
-                scale /= delta;
-            else
-                scale *= delta;
+              if (event.getDeltaY() < 0)
+                  scale /= delta;
+              else
+                  scale *= delta;
 
-            scale = clamp(scale, MIN_SCALE, MAX_SCALE);
+              scale = clamp( scale, MIN_SCALE, MAX_SCALE);
 
-            double f = (scale / oldScale)-1;
-//          double dx = f*(event.getSceneX() - (canvas.getBoundsInParent().getWidth()/2 + canvas.getBoundsInParent().getMinX()));
-//            double dy = f*(event.getSceneY() - (canvas.getBoundsInParent().getHeight()/2 + canvas.getBoundsInParent().getMinY()));
-//            double dx = f*(event.getSceneX() - (canvas.getWidth()/2 + canvas.getBoundsInParent().getMinX()));
-//            double dy = f*(event.getSceneY() - (canvas.getHeight()/2 + canvas.getBoundsInParent().getMinY()));
-         
-           double dx = (-event.getSceneX()*scale + event.getSceneX()*oldScale) 
-        		   + (event.getX()*scale - event.getX()*oldScale);
-           double dy = (-event.getSceneY()*scale + event.getSceneY()*oldScale)
-        		   + (event.getY()*scale - event.getY()*oldScale);     
+              double f = (scale / oldScale)-1;
 
-            canvas.setScale(scale);
-            //System.out.println("Scale: " + scale);
+              double dx = (event.getSceneX() - (canvas.getBoundsInParent().getWidth()/2 + canvas.getBoundsInParent().getMinX()));
+              double dy = (event.getSceneY() - (canvas.getBoundsInParent().getHeight()/2 + canvas.getBoundsInParent().getMinY()));
 
-           // System.out.println("Scale: " + scale);
-           
-//            double dx = event.getX() - event.getX()*1.08;
-//            double dy = event.getY() - event.getY()*1.08;
-           //System.out.println("dx: " + dx);
+              canvas.setScale( scale);
 
-//            double dx = -(-event.getSceneX() + event.getX()) + x;
-//            double dy = -(-event.getSceneY()+event.getY()) +y;
-        	
-        	/*double factor = 0.8;
-        	if(event.getDeltaY() < 0) {
-        		factor = 1/factor;
-        	}
-        	
-        	canvas.setScale(canvas.getScale() * factor);
-        	Cursor cursor = canvas.getCursor();
-        	
-        	double dx = event.getX() - canvas.getTranslateX() * (factor-1);
-        	double dy = event.getY() - canvas.getTranslateY() * (factor-1);*/
+              // note: pivot value must be untransformed, i. e. without scaling
+              canvas.setPivot(f*dx, f*dy);
 
-            // note: pivot value must be untransformed, i. e. without scaling
-            canvas.setPivot(dx, dy);
-            event.consume();
-            //zoom(Math.pow(1.01, event.getDeltaY()), event.getSceneX(), event.getSceneY());
+              event.consume();
 
         }
     };
