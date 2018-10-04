@@ -20,9 +20,14 @@ import javafx.scene.shape.StrokeType;
 
 public class FirstCurve extends Group implements Constants {
 	String startPos;
+	double startX;
 	
 	public FirstCurve(String startPos) {
 		this.startPos = startPos;
+		if(startPos.equalsIgnoreCase("Left")) startX = LEFT_START_POS_X;
+		else if(startPos.equalsIgnoreCase("Center")) startX = CENTER_START_POS_X;
+		else if(startPos.equalsIgnoreCase("Right")) startX = RIGHT_START_POS_X;
+
 		CubicCurve curve = createStartingCurve();
 
 		Line controlLine1 = new BoundLine(curve.controlX1Property(), curve.controlY1Property(), curve.startXProperty(),
@@ -32,8 +37,11 @@ public class FirstCurve extends Group implements Constants {
 
 		Anchor start = new Anchor(Color.PALEGREEN, curve.startXProperty(), curve.startYProperty());
 		Anchor control1 = new Anchor(Color.GOLD, curve.controlX1Property(), curve.controlY1Property());
-		Anchor control2 = new Anchor(Color.GOLDENROD, curve.controlX2Property(), curve.controlY2Property());
-		Anchor end = new Anchor(Color.TOMATO, curve.endXProperty(), curve.endYProperty());
+		FirstBoundAnchor control2 = new FirstBoundAnchor(Color.GOLDENROD, curve.controlX2Property(), curve.controlY2Property());
+		FirstAnchor end = new FirstAnchor(Color.TOMATO, curve.endXProperty(), curve.endYProperty());
+		end.setCenterX(startX);
+		end.setCenterY(START_POS_Y);
+		control2.setCenterX(startX);
 		
 		this.getChildren().addAll(curve, controlLine1, controlLine2, start, control1, control2, end);
 	}
@@ -66,6 +74,88 @@ public class FirstCurve extends Group implements Constants {
 			setStrokeLineCap(StrokeLineCap.BUTT);
 			getStrokeDashArray().setAll(10.0, 5.0);
 		}
+	}
+	
+	class FirstAnchor extends Circle {
+		FirstAnchor(Color color, DoubleProperty x, DoubleProperty y) {
+			super(x.get(), y.get(), 10);
+			setFill(color.deriveColor(1, 1, 1, 0.5));
+			setStroke(color);
+			setStrokeWidth(2);
+			setStrokeType(StrokeType.OUTSIDE);
+
+			x.bind(centerXProperty());
+			y.bind(centerYProperty());
+		}
+	}
+	
+	class FirstBoundAnchor extends Circle {
+		FirstBoundAnchor(Color color, DoubleProperty x, DoubleProperty y) {
+			super(x.get(), y.get(), 10);
+			setFill(color.deriveColor(1, 1, 1, 0.5));
+			setStroke(color);
+			setStrokeWidth(2);
+			setStrokeType(StrokeType.OUTSIDE);
+
+			x.bind(centerXProperty());
+			y.bind(centerYProperty());
+			enableDrag();
+		}
+
+		// make a node movable by dragging it around with the mouse.
+		private void enableDrag() {
+			final Delta dragDelta = new Delta();
+			setOnMousePressed(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					// record a delta distance for the drag and drop operation.
+					//dragDelta.x = getCenterX() - mouseEvent.getX();
+					dragDelta.y = getCenterY() - mouseEvent.getY();
+					getScene().setCursor(Cursor.MOVE);
+				}
+			});
+			setOnMouseReleased(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					getScene().setCursor(Cursor.HAND);
+				}
+			});
+			setOnMouseDragged(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+//					double newX = mouseEvent.getX() + dragDelta.x;
+//					if (newX > 0 && newX < getScene().getWidth()) {
+//						setCenterX(newX);
+//					}
+					double newY = mouseEvent.getY() + dragDelta.y;
+					if (newY > 0 && newY < getScene().getHeight()) {
+						setCenterY(newY);
+					}
+				}
+			});
+			setOnMouseEntered(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					if (!mouseEvent.isPrimaryButtonDown()) {
+						getScene().setCursor(Cursor.HAND);
+					}
+				}
+			});
+			setOnMouseExited(new EventHandler<MouseEvent>() {
+				@Override
+				public void handle(MouseEvent mouseEvent) {
+					if (!mouseEvent.isPrimaryButtonDown()) {
+						getScene().setCursor(Cursor.DEFAULT);
+					}
+				}
+			});
+		}
+
+		// records relative x and y co-ordinates.
+		private class Delta {
+			double x, y;
+		}
+		
 	}
 
 	// a draggable anchor displayed around a point.

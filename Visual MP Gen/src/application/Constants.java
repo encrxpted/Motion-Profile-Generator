@@ -26,13 +26,14 @@ public interface Constants {
 	public final static double PX_TO_IN = FIELD_X_PX / FIELD_X_IN;
 	
 	// ROBOT DIMENSIONS (INCLUDING BUMPERS)
-	public final static double ROBOT_WIDTH_IN = 0;
+	public final static double ROBOT_WIDTH_IN = 32; // GET THE REAL VALUE
+	public final static double ROBOT_WIDTH_PX = ROBOT_WIDTH_IN * PX_TO_IN;
 	public final static double ROBOT_LENGTH_IN = 0;
 	public final static double ROBOT_DT_WIDTH = 0; // Drivetrain width (length between wheels)
 	
 	// STARTING POSITIONS
-	public final static double START_POS_Y = 0;
-	public final static double LEFT_START_POS_X = 0;
+	public final static double START_POS_Y = 497;
+	public final static double LEFT_START_POS_X = 485 - ROBOT_WIDTH_IN * PX_TO_IN/2;
 	public final static double CENTER_START_POS_X = 0;
 	public final static double RIGHT_START_POS_X = 0;
 	

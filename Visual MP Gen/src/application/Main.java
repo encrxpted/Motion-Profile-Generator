@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import application.autos.FirstCurve;
 import application.autos.MovableCurves;
 import javafx.application.Application;
 import javafx.concurrent.Service;
@@ -30,7 +31,8 @@ public class Main extends Application implements Constants {
 	@Override
 	public void start(Stage primaryStage) {
 		MovableCurves curve = new MovableCurves();
-		canvas.getChildren().addAll(mapImg, curve);
+		FirstCurve curve1 = new FirstCurve("Left");
+		canvas.getChildren().addAll(mapImg, curve, curve1);
 
 		rightMenu = MenuHelper.addGridPane(); // Adds the menu on the right
 		
