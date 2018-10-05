@@ -18,9 +18,10 @@ import javafx.scene.shape.StrokeType;
  */
 
 public class MovableCurves extends Group {
+	CubicCurve curve;
 	
 	public MovableCurves() {
-		CubicCurve curve = createStartingCurve();
+		curve = createStartingCurve();
 
 		Line controlLine1 = new BoundLine(curve.controlX1Property(), curve.controlY1Property(), curve.startXProperty(),
 				curve.startYProperty());
@@ -35,23 +36,23 @@ public class MovableCurves extends Group {
 		this.getChildren().addAll(curve, controlLine1, controlLine2, start, control1, control2, end);
 	}
 
-	  private CubicCurve createStartingCurve() {
-	    CubicCurve curve = new CubicCurve();
-	    curve.setStartX(100);
-	    curve.setStartY(100);
-	    curve.setControlX1(150);
-	    curve.setControlY1(50);
-	    curve.setControlX2(250);
-	    curve.setControlY2(150);
-	    curve.setEndX(300);
-	    curve.setEndY(100);
-	    curve.setStroke(Color.FORESTGREEN);
-	    curve.setStrokeWidth(4);
-	    curve.setStrokeLineCap(StrokeLineCap.ROUND);
-	    curve.setFill(null);
-	    return curve;
-	  }
-	
+	private CubicCurve createStartingCurve() {
+		CubicCurve curve = new CubicCurve();
+		curve.setStartX(100);
+		curve.setStartY(100);
+		curve.setControlX1(150);
+		curve.setControlY1(50);
+		curve.setControlX2(250);
+		curve.setControlY2(150);
+		curve.setEndX(300);
+		curve.setEndY(100);
+		curve.setStroke(Color.FORESTGREEN);
+		curve.setStrokeWidth(4);
+		curve.setStrokeLineCap(StrokeLineCap.ROUND);
+		curve.setFill(null);
+		return curve;
+	}
+
 	class BoundLine extends Line {
 		BoundLine(DoubleProperty startX, DoubleProperty startY, DoubleProperty endX, DoubleProperty endY) {
 			startXProperty().bind(startX);
@@ -132,6 +133,10 @@ public class MovableCurves extends Group {
 		private class Delta {
 			double x, y;
 		}
+	}
+	
+	public CubicCurve getCurve() {
+		return curve;
 	}
 
 }

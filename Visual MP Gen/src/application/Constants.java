@@ -29,7 +29,8 @@ public interface Constants {
 	public final static double ROBOT_WIDTH_IN = 32; // GET THE REAL VALUE
 	public final static double ROBOT_WIDTH_PX = ROBOT_WIDTH_IN * PX_TO_IN;
 	public final static double ROBOT_LENGTH_IN = 0;
-	public final static double ROBOT_DT_WIDTH = 0; // Drivetrain width (length between wheels)
+	public final static double ROBOT_DT_WIDTH_IN = 24; // Drivetrain width (length between wheels) TODO real value
+	public final static double ROBOT_DT_WIDTH_PX = ROBOT_DT_WIDTH_IN * PX_TO_IN;
 	
 	// STARTING POSITIONS
 	public final static double START_POS_Y = 497;

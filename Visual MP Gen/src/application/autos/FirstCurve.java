@@ -21,6 +21,7 @@ import javafx.scene.shape.StrokeType;
 public class FirstCurve extends Group implements Constants {
 	String startPos;
 	double startX;
+	CubicCurve curve;
 	
 	public FirstCurve(String startPos) {
 		this.startPos = startPos;
@@ -28,7 +29,7 @@ public class FirstCurve extends Group implements Constants {
 		else if(startPos.equalsIgnoreCase("Center")) startX = CENTER_START_POS_X;
 		else if(startPos.equalsIgnoreCase("Right")) startX = RIGHT_START_POS_X;
 
-		CubicCurve curve = createStartingCurve();
+		curve = createStartingCurve();
 
 		Line controlLine1 = new BoundLine(curve.controlX1Property(), curve.controlY1Property(), curve.startXProperty(),
 				curve.startYProperty());
@@ -225,6 +226,10 @@ public class FirstCurve extends Group implements Constants {
 		private class Delta {
 			double x, y;
 		}
+	}
+	
+	public CubicCurve getCurve() {
+		return curve;
 	}
 
 }
